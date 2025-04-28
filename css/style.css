@@ -1,3 +1,6 @@
+:root{
+    --pokemon-picture:url(../assets/images/94.png)
+}
 *{
     box-sizing: border-box;
 }
@@ -21,4 +24,19 @@ nav ul{
 body{
     margin: 0;
     font-family: sans-serif;
+}
+.card{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    perspective: 500px;
+    border: 1px solid black;
+}
+.back-card{
+    background-image: linear-gradient(red 45%, rgb(0, 0, 20) 45% 47%, white 47% );
+}
+
+.front-card{
+    background-image: var(--pokemon-picture);
+    rotate: y 180deg;
 }
