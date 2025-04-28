@@ -22,21 +22,50 @@ nav ul{
     margin-bottom: 0;
 }
 body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin: 0;
     font-family: sans-serif;
+    background-color: black;
+}
+h1{
+    color: white;
+}
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2rem;
+}
+@media screen and (width>768px){
+    .cards-container{
+        grid-template-columns: repeat(4,1fr);
+    }
 }
 .card{
     position: relative;
     width: 300px;
     height: 400px;
     perspective: 500px;
-    border: 1px solid black;
 }
-.back-card{
-    background-image: linear-gradient(red 45%, rgb(0, 0, 20) 45% 47%, white 47% );
+.back-card,.front-card{
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s;
+    backface-visibility: hidden;
+    border-radius: 0.8rem;
 }
-
+.back-card {
+    display:flex;
+    justify-content: center;
+    font-size: 6rem;
+    background-image: 
+        linear-gradient(red 48%, rgb(0, 0, 20) 48% 50%, white 50%),
+        radial-gradient(circle at center, white 30%, rgb(0, 0, 20) 30% 32%, rgba(255, 255, 255, 0) 32%);
+}
 .front-card{
     background-image: var(--pokemon-picture);
     rotate: y 180deg;
+    background-color: rgb(201, 227, 236);
 }
