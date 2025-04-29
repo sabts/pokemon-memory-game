@@ -5,7 +5,7 @@ const restartButtonElement = document.getElementById('restart')
 
 let pokemonCards = [];
 let selectedCard = [];
-let points = 100;
+let points = 0;
 let tries = 1;
 
 const randompokemonCards = () => {
@@ -51,7 +51,8 @@ const compareCard = () => {
             }, 1000);
        // triesElement.textContent = `Tries: ${tries++}`
         } else{
-            pointsElement.textContent = `Points:${points++}` 
+            points += 100;
+            pointsElement.textContent = `Points: ${points}` 
         }
         selectedCard = [];
     }
@@ -94,7 +95,16 @@ const renderCardsToPlay = () => {
         turnAttheBegining();
     }, 200);
 };
+const resetGameStats = () => {
+    points = 0;
+    tries = 0;
+    pointsElement.textContent = `Points: ${points}`;
+  triesElement.textContent = `Tries: ${tries}`;
+  };
 
 renderCardsToPlay();
 
-restartButtonElement.addEventListener("click", renderCardsToPlay);
+restartButtonElement.addEventListener("click", () => {
+    resetGameStats();
+    renderCardsToPlay();
+  });
