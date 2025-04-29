@@ -1,7 +1,12 @@
 const cardsContainerElement = document.getElementById('cards-container');
+const pointsElement = document.getElementById('points');
+const triesElement = document.getElementById('tries')
+const restartButtonElement = document.getElementById('restart')
 
 let pokemonCards = [];
 let selectedCard = [];
+let points = 100;
+let tries = 1;
 
 const randompokemonCards = () => {
     while(pokemonCards.length < 6) {
@@ -23,6 +28,7 @@ const cardIChooseYou = (event) => {
    // console.log(selectedCard)
    if (selectedCard.length === 2) {
     compareCard();
+    triesElement.textContent = `Tries: ${tries++}`
 }
 }
 
@@ -42,6 +48,7 @@ const compareCard = () => {
                 firstCard.classList.remove('flip-Card');
                 secondCard.classList.remove('flip-Card');
             }, 1000);
+       // triesElement.textContent = `Tries: ${tries++}`
         } 
         selectedCard = [];
     }
