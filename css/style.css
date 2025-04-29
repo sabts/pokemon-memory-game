@@ -86,13 +86,16 @@ h1{
         top: 67px;
     }
 }
-
 .front-card{
     background-image: var(--pokemon-picture);
     rotate: y 180deg;
     background-color: rgb(201, 227, 236);
 }
 
-.flip-Card{
+.flip-Card .front-card{
+    rotate: y 360deg;
+}
+
+.flip-Card .back-card{
     rotate: y 180deg;
 }
