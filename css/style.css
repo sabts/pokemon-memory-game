@@ -50,10 +50,11 @@ h1{
 }
 .back-card,.front-card{
     position: absolute;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
-    transition: 0.5s;
     backface-visibility: hidden;
+    transition: 0.5s;
     border-radius: 0.8rem;
 }
 .back-card {
@@ -61,11 +62,19 @@ h1{
     justify-content: center;
     font-size: 6rem;
     background-image: 
-        linear-gradient(red 48%, rgb(0, 0, 20) 48% 50%, white 50%),
-        radial-gradient(circle at center, white 30%, rgb(0, 0, 20) 30% 32%, rgba(255, 255, 255, 0) 32%);
+    radial-gradient(circle at center, white 20%, rgb(0, 0, 20) 20% 23%, rgba(255, 255, 255, 0) 23%), linear-gradient(red 48%, rgb(0, 0, 20) 48% 50%, white 50%)
+}
+.back-card::after{
+    content: "?";
+    position: absolute;
+    top: 145px;
 }
 .front-card{
     background-image: var(--pokemon-picture);
     rotate: y 180deg;
     background-color: rgb(201, 227, 236);
+}
+.flip-Card{
+    rotate: y 180deg;
+    backface-visibility:visible;
 }
