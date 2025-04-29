@@ -1,10 +1,11 @@
 const cardsContainerElement = document.getElementById('cards-container');
 
 let pokemonCards = [];
+let selectedCard = [];
 
 const randompokemonCards = () => {
     while(pokemonCards.length < 6) {
-        const generateRandomPokemon = Math.floor(Math.random()*152);
+        const generateRandomPokemon = Math.floor(Math.random()*152); //tengo que aegurarme que no de 0
         const randompokemon = `${generateRandomPokemon}`
         if(!pokemonCards.includes(randompokemon)){
             pokemonCards.push(randompokemon)
@@ -18,7 +19,7 @@ const randompokemonCards = () => {
 const cardIChooseYou = (event, pokemon) => {
     const cardclicked  = event.target;
     cardclicked.classList.add('flip-Card');
-    
+    selectedCard.push(cardclicked);
 }
 
 const renderCardsToPlay = () => {
@@ -47,6 +48,22 @@ const renderCardsToPlay = () => {
     cardsContainerElement.append(fragment)
 };
 
-console.log(pokemonCards);
-randompokemonCards()
+const compareCard = () => {
+    if(selectedCard.length === 2){
+        let firstCard = selectedCard.slice(0);
+        let secondCard = selectedCard.slice(1);
+        console.log(firstCard)
+        console.log(secondCard);
+        if(firstCard !== secondCard){
+            setTimeout(() => {
+                cardclicked.classList.remove('flip-Card');
+                }, 1000);
+        } else {
+            cardclicked.classList.add('flip-Card');
+        }
+    }
+   cardIChooseYou()
+}
+
 renderCardsToPlay();
+//compareCard()
