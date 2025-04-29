@@ -2,7 +2,6 @@ const cardsContainerElement = document.getElementById('cards-container');
 
 let pokemonCards = [];
 let selectedCard = [];
-//let lockBoard = false
 
 const randompokemonCards = () => {
     while(pokemonCards.length < 6) {
@@ -43,9 +42,19 @@ const compareCard = () => {
                 firstCard.classList.remove('flip-Card');
                 secondCard.classList.remove('flip-Card');
             }, 1000);
-        }
+        } 
         selectedCard = [];
     }
+}
+
+const turnAttheBegining = () => {
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(card => {
+        card.classList.add('flip-Card');
+        setTimeout(() => {
+            card.classList.remove('flip-Card');
+        }, 4800);
+    });
 }
 
 const renderCardsToPlay = () => {
@@ -71,5 +80,9 @@ const renderCardsToPlay = () => {
         fragment.append(cardContainer);
     });
     cardsContainerElement.append(fragment)
+    setTimeout(() => {
+        turnAttheBegining();
+    }, 200);
 };
+
 renderCardsToPlay();
