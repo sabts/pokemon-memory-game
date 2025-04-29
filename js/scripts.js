@@ -2,10 +2,11 @@ const cardsContainerElement = document.getElementById('cards-container');
 
 let pokemonCards = [];
 let selectedCard = [];
+//let lockBoard = false
 
 const randompokemonCards = () => {
     while(pokemonCards.length < 6) {
-        const generateRandomPokemon = Math.floor(Math.random()*152); //tengo que aegurarme que no de 0
+        const generateRandomPokemon = Math.floor(Math.random()*151)+ 1; // no Genera 0 segun yo
         const randompokemon = `${generateRandomPokemon}`
         if(!pokemonCards.includes(randompokemon)){
             pokemonCards.push(randompokemon)
@@ -16,10 +17,35 @@ const randompokemonCards = () => {
      return pairPokemon;
 }
 
-const cardIChooseYou = (event, pokemon) => {
+const cardIChooseYou = (event) => {
     const cardclicked  = event.target;
     cardclicked.classList.add('flip-Card');
-    selectedCard.push(cardclicked);
+    selectedCard.push(cardclicked); 
+   // console.log(selectedCard)
+   if (selectedCard.length === 2) {
+    compareCard();
+}
+}
+
+const compareCard = () => {
+    if(selectedCard.length === 2){     
+        const firstCard = selectedCard[0];
+        const secondCard = selectedCard[1];
+
+        const firstFrontCard = firstCard.querySelector('.front-card');
+        const secondFrontCard = secondCard.querySelector('.front-card');
+        
+        const firstPokemonImage = firstFrontCard.style.getPropertyValue('--pokemon-picture');
+        const secondPokemonImage = secondFrontCard.style.getPropertyValue('--pokemon-picture');
+
+        if (firstPokemonImage !== secondPokemonImage) {
+            setTimeout(() => {
+                firstCard.classList.remove('flip-Card');
+                secondCard.classList.remove('flip-Card');
+            }, 1000);
+        }
+        selectedCard = [];
+    }
 }
 
 const renderCardsToPlay = () => {
@@ -30,7 +56,6 @@ const renderCardsToPlay = () => {
     pokemon.forEach((cardImage) => {
         const cardContainer = document.createElement("div");
         cardContainer.classList.add("card");
-
         cardContainer.addEventListener("click", cardIChooseYou);
 
         //(back)
@@ -47,23 +72,4 @@ const renderCardsToPlay = () => {
     });
     cardsContainerElement.append(fragment)
 };
-
-const compareCard = () => {
-    if(selectedCard.length === 2){
-        let firstCard = selectedCard.slice(0);
-        let secondCard = selectedCard.slice(1);
-        console.log(firstCard)
-        console.log(secondCard);
-        if(firstCard !== secondCard){
-            setTimeout(() => {
-                cardclicked.classList.remove('flip-Card');
-                }, 1000);
-        } else {
-            cardclicked.classList.add('flip-Card');
-        }
-    }
-   cardIChooseYou()
-}
-
 renderCardsToPlay();
-//compareCard()
