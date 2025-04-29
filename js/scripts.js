@@ -48,7 +48,7 @@ const CardsFront = () => {
         // (front)
         const frontCard = document.createElement("div");
         frontCard.classList.add("card","front-card");
-        frontCard.style.setProperty = (`--pokemon-picture, url(${cardImage})`);
+        frontCard.style.setProperty("--pokemon-picture:", `url(${cardImage})`);
 
         cardContainer.append(backCard, frontCard);
         fragment.append(cardContainer);

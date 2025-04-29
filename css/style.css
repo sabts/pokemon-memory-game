@@ -1,5 +1,5 @@
 :root{
-    --pokemon-picture:url(../assets/images/94.png)
+    --pokemon-picture: url(../assets/images/94.png)
 }
 *{
     box-sizing: border-box;
@@ -46,15 +46,12 @@ h1{
     position: relative;
     width: 300px;
     height: 400px;
-    perspective: 500px;
 }
 .back-card,.front-card{
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    backface-visibility: hidden;
-    transition: 0.5s;
     border-radius: 0.8rem;
 }
 .back-card {
@@ -76,5 +73,8 @@ h1{
 }
 .flip-Card{
     rotate: y 180deg;
+    perspective: 500px;
     backface-visibility:visible;
+    transition: 0.5s;
+    backface-visibility: hidden;
 }
