@@ -9,6 +9,7 @@ let points = 100;
 let tries = 1;
 
 const randompokemonCards = () => {
+    pokemonCards = []; 
     while(pokemonCards.length < 6) {
         const generateRandomPokemon = Math.floor(Math.random()*151)+ 1; // no Genera 0 segun yo
         const randompokemon = `${generateRandomPokemon}`
@@ -49,7 +50,9 @@ const compareCard = () => {
                 secondCard.classList.remove('flip-Card');
             }, 1000);
        // triesElement.textContent = `Tries: ${tries++}`
-        } 
+        } else{
+            pointsElement.textContent = `Points:${points++}` 
+        }
         selectedCard = [];
     }
 }
@@ -93,3 +96,5 @@ const renderCardsToPlay = () => {
 };
 
 renderCardsToPlay();
+
+restartButtonElement.addEventListener("click", renderCardsToPlay);
