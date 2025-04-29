@@ -5,7 +5,7 @@ let pokemonCards = [];
 const randompokemonCards = () => {
     while(pokemonCards.length < 6) {
         const generateRandomPokemon = Math.floor(Math.random()*152);
-        const randompokemon = `assets/images/${generateRandomPokemon}.png`
+        const randompokemon = `${generateRandomPokemon}`
         if(!pokemonCards.includes(randompokemon)){
             pokemonCards.push(randompokemon)
         }
@@ -16,18 +16,12 @@ const randompokemonCards = () => {
 }
 
 const cardIChooseYou = (event, pokemon) => {
-    const cardClicked = event.target;
-    const card = cardsContainerElement.children[0];
-    const cardBack = cardsContainerElement.children[0].children[0];
-    const CardsFront = cardsContainerElement.children[0].nextSibling
-
-    if(cardClicked === card){
-        card.classList.add('flip-Card')
-        cardBack.classList.remove('back-card')
-    }
+    const cardclicked  = event.target;
+    cardclicked.classList.add('flip-Card');
+    
 }
 
-const CardsFront = () => {
+const renderCardsToPlay = () => {
     cardsContainerElement.textContent = ""; //padre
     const fragment = document.createDocumentFragment(); 
     const pokemon = randompokemonCards()
@@ -36,19 +30,16 @@ const CardsFront = () => {
         const cardContainer = document.createElement("div");
         cardContainer.classList.add("card");
 
-        cardContainer.addEventListener("click", (event) => {
-            cardIChooseYou(event, cardContainer);
-        });
+        cardContainer.addEventListener("click", cardIChooseYou);
 
         //(back)
         const backCard = document.createElement("div");
         backCard.classList.add("card","back-card");
-        //backCard.textContent = "?";
 
         // (front)
         const frontCard = document.createElement("div");
         frontCard.classList.add("card","front-card");
-        frontCard.style.setProperty("--pokemon-picture:", `url(${cardImage})`);
+        frontCard.style.setProperty('--pokemon-picture', `url(../assets/images/${cardImage}.png)`);
 
         cardContainer.append(backCard, frontCard);
         fragment.append(cardContainer);
@@ -58,4 +49,4 @@ const CardsFront = () => {
 
 console.log(pokemonCards);
 randompokemonCards()
-CardsFront();
+renderCardsToPlay();

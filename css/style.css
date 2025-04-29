@@ -1,6 +1,3 @@
-:root{
-    --pokemon-picture: url(../assets/images/94.png)
-}
 *{
     box-sizing: border-box;
 }
@@ -44,37 +41,58 @@ h1{
 }
 .card{
     position: relative;
-    width: 300px;
-    height: 400px;
+    width: 150px;
+    height: 200px;
+    perspective: 500px;
 }
 .back-card,.front-card{
     position: absolute;
+    width: 100%;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    backface-visibility: hidden;
     border-radius: 0.8rem;
+    transition: 0.5s;
+    pointer-events: none;
 }
 .back-card {
     display:flex;
     justify-content: center;
-    font-size: 6rem;
+    font-size: 3.5rem;
+    font-weight: 900;
     background-image: 
-    radial-gradient(circle at center, white 20%, rgb(0, 0, 20) 20% 23%, rgba(255, 255, 255, 0) 23%), linear-gradient(red 48%, rgb(0, 0, 20) 48% 50%, white 50%)
+    radial-gradient(circle at center, white 20%, rgb(0, 0, 20) 20% 23%, rgba(255, 255, 255, 0) 23%), linear-gradient(red 48%, rgb(0, 0, 20) 48% 50%, white 50%);
+    rotate: y 0deg;
 }
 .back-card::after{
     content: "?";
     position: absolute;
-    top: 145px;
+    top: 68px;
+    pointer-events: none;
 }
+@media screen and (width>768px){
+    .cards{
+        width: 300px;
+        height: 400px;
+    }
+    .back-card{
+        font-size: 3.5rem;
+    }
+    .back-card::after{
+        content: "?";
+        position: absolute;
+        top: 67px;
+    }
+}
+
 .front-card{
     background-image: var(--pokemon-picture);
     rotate: y 180deg;
     background-color: rgb(201, 227, 236);
 }
+
 .flip-Card{
     rotate: y 180deg;
-    perspective: 500px;
-    backface-visibility:visible;
-    transition: 0.5s;
-    backface-visibility: hidden;
 }
